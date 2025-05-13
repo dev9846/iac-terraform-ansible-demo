@@ -11,6 +11,7 @@ env:
 jobs:
   build-ami:
     name: Build AMI with Packer
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     runs-on: ubuntu-latest
 
     steps:
@@ -36,6 +37,7 @@ jobs:
           echo "AMI_ID=$AMI_OUTPUT" >> $GITHUB_ENV
 
   deploy:
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     name: Deploy Terraform Infra
     runs-on: ubuntu-latest
     needs: build-ami

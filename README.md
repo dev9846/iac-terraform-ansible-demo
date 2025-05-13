@@ -1,60 +1,134 @@
-# iac-terraform-ansible-demo
-Infrastructure as Code: Terraform, Ansible, Packer with HTTPS &amp; NGINX on AWS
+# 🚀 IaC Demo Project: Terraform + Packer + Ansible + GitHub Actions
 
-# Infrastructure as Code: Terraform + Ansible + Packer on AWS
-
-This project demonstrates a complete infrastructure-as-code workflow using **Terraform**, **Ansible**, and **Packer** to provision and configure an NGINX web server on AWS with HTTPS enabled. GitHub Actions is used for CI/CD.
-
-## 🔧 Tools Used
-
-- **Terraform** – To provision AWS infrastructure
-- **Ansible** – To configure the EC2 instance with NGINX and HTTPS
-- **Packer** – (Bonus) To build a pre-configured AMI with Ansible
-- **GitHub Actions** – CI pipeline for validating and applying Terraform code
+![CI/CD](https://github.com/dev9846/iac-terraform-ansible-demo/actions/workflows/ci-cd.yml/badge.svg)
+![Security Hardened](https://img.shields.io/badge/security-hardened-brightgreen?style=flat-square\&logo=shield)
+![License](https://img.shields.io/github/license/dev9846/iac-terraform-ansible-demo)
 
 ---
 
-## 🧱 Project Structure
+## 📦 Overview
+
+This project demonstrates a production-ready Infrastructure-as-Code (IaC) pipeline using:
+
+* **Terraform** (modular structure)
+* **Packer** (for baking secure AMIs)
+* **Ansible** (for NGINX + HTTPS configuration)
+* **GitHub Actions** (CI/CD automation)
+
+It provisions a secured EC2 instance on AWS with NGINX configured to serve over **HTTPS** using a self-signed certificate.
+
+---
+
+## 🧱 Architecture
+
+```text
+GitHub Actions
+    |
+    |---> Packer builds hardened AMI with Ansible
+    |
+    |---> Terraform deploys infra using that AMI
+
+Outputs:
+  - Encrypted EC2 instance
+  - NGINX with SSL (self-signed)
+  - Security Group 
+```
+
+---
+
+## 📂 Project Structure
+
+```
+.
+├── .github/workflows/ci-cd.yml       # GitHub Actions pipeline
+├── packer/nginx-python3.8-ami.json   # Packer config (uses Ansible)
+├── ansible/nginx_setup.yml           # Ansible playbook to configure NGINX + SSL
+├── modules/                          # Terraform modules
+└── env/dev/                          # Terraform environment config
+    ├── main.tf
+    ├── variables.tf
+    ├── terraform.auto.tfvars         # AMI ID is auto-written here
+```
+
+---
+
+🔧 Tools Used
+Terraform – To provision AWS infrastructure
+Ansible – To configure the EC2 instance with NGINX and HTTPS
+Packer – (Bonus) To build a pre-configured AMI with Ansible
+GitHub Actions – CI pipeline for validating and applying Terraform code
+
+
+---
+
+## 🔐 Security Highlights
+
+* **Disk Encryption**: EBS volumes encrypted via AWS KMS
+* **SSL Enabled**: NGINX serves over HTTPS (self-signed)
+* **No Secrets in Code**: All credentials managed via GitHub Secrets
+
+
+---
+
+## ⚙️ GitHub Actions Pipeline
+
+* ✅ **Build AMI** using Packer with Ansible
+* ✅ **Extract AMI ID** and write to Terraform tfvars
+* ✅ **Apply infrastructure** via Terraform in `env/dev`
+* ✅ **Run on push to `main` or manual dispatch**
+
+---
+
+## 🚀 Getting Started (Local)
+
+### Prerequisites
+
+* AWS CLI + credentials with EC2/IAM/S3 access
+* Terraform
+* Packer
+* Python + Ansible
+
+### Manual Steps
 
 ```bash
-.
-├── modules/               # Reusable Terraform modules (VPC, EC2, SG)
-├── env/dev/               # Environment-specific config
-├── ansible/               # Ansible playbook and inventory
-├── packer/                # Packer template to build NGINX AMI
-├── .github/workflows/     # GitHub Actions CI/CD workflow
-├── screenshots/           # Screenshots of AWS and HTTPS access
-├── README.md              # This file
-└── .gitignore
+# Build AMI
+cd packer
+packer build nginx-python3.8-ami.json
 
-Features:
+# Update AMI ID in env/dev/terraform.tfvars
 
-VPC with public subnet and IGW
-EC2 instance with SSH, HTTP, and HTTPS security group
-Ansible installs and configures NGINX with a self-signed SSL cert
-Packer builds a reusable AMI with preinstalled NGINX
-GitHub Actions automates Terraform format/validate and plan
-
-Setup Prerequisites
-
-AWS CLI with credentials configured
-Terraform >= 1.3
-Ansible
-Packer (optional)
-SSH key pair created in AWS
-
-# Notes:
-1. Make sure you have s3 backend bucket already created and use it in backend.
-2. Create a key pair in AWS EC2 Console and update key_name in terraform.tfvars. Ensure the downloaded .pem is available locally for SSH access.
-
-Deploy:
-cd env/dev
+# Deploy infrastructure
+cd ../../env/dev
 terraform init
-terraform plan
 terraform apply
+```
 
-Run Ansible:
-ansible-playbook -i inventory ../ansible/nginx_setup.yml
+---
 
-Contributing:
-Feel free to fork this repo and contribute by opening a PR!
+## ✅ Features
+
+* Full automation from AMI to deployment
+* Modular, reusable Terraform code
+* Production-style Ansible provisioning baked into AMI
+* CI/CD that runs cleanly on push to `main` with option to skip CI/CD if mention [Skip ci] in comment.
+* Secure-by-default infrastructure
+
+---
+
+## 🧹 TODO (Future Enhancements)
+
+* [ ] Use Let's Encrypt instead of self-signed SSL
+* [ ] Add tfsec or Checkov security scans
+* [ ] Use GitHub OIDC instead of access keys
+* [ ] Add CloudWatch logging and alarms
+* [ ] Rolling deployments using `create_before_destroy`
+
+---
+
+## 📜 License
+
+[MIT](./LICENSE)
+
+---
+
+> Created with ❤️ by Devang Pandya — built for speed, security, and interviews.
