@@ -54,10 +54,10 @@ Outputs:
 
 ## Tools Used
 
-Terraform – To provision AWS infrastructure
-Ansible – To configure the EC2 instance with NGINX and HTTPS
-Packer – (Bonus) To build a pre-configured AMI with Ansible
-GitHub Actions – CI pipeline for validating and applying Terraform code
+* **Terraform**: – To provision AWS infrastructure
+* **Ansible**: – To configure the EC2 instance with NGINX and HTTPS
+* **Packer**: – (Bonus) To build a pre-configured AMI with Ansible
+* **GitHub Actions**: – CI pipeline for validating and applying Terraform code
 
 
 ---
@@ -73,10 +73,10 @@ GitHub Actions – CI pipeline for validating and applying Terraform code
 
 ##  GitHub Actions Pipeline
 
-* ✅ **Build AMI** using Packer with Ansible
-* ✅ **Extract AMI ID** and write to Terraform tfvars
-* ✅ **Apply infrastructure** via Terraform in `env/dev`
-* ✅ **Run on push to `main` or manual dispatch**
+*  **Build AMI** using Packer with Ansible
+*  **Extract AMI ID** and write to Terraform tfvars
+*  **Apply infrastructure** via Terraform in `env/dev`
+*  **Run on push to `main` or manual dispatch**
 
 ---
 
