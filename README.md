@@ -1,12 +1,12 @@
-# 🚀 IaC Demo Project: Terraform + Packer + Ansible + GitHub Actions
+# IaC Demo Project: Terraform + Packer + Ansible + GitHub Actions
 
-![CI/CD](https://github.com/dev9846/iac-terraform-ansible-demo/actions/workflows/ci-cd.yml/badge.svg)
+![CI/CD](https://github.com/dev9846/iac-terraform-ansible-demo/actions/workflows/dev-ci-cd.yml/badge.svg)
 ![Security Hardened](https://img.shields.io/badge/security-hardened-brightgreen?style=flat-square\&logo=shield)
 ![License](https://img.shields.io/github/license/dev9846/iac-terraform-ansible-demo)
 
 ---
 
-## 📦 Overview
+##  Overview
 
 This project demonstrates a production-ready Infrastructure-as-Code (IaC) pipeline using:
 
@@ -19,7 +19,7 @@ It provisions a secured EC2 instance on AWS with NGINX configured to serve over 
 
 ---
 
-## 🧱 Architecture
+##  Architecture
 
 ```text
 GitHub Actions
@@ -36,7 +36,7 @@ Outputs:
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 .
@@ -52,7 +52,8 @@ Outputs:
 
 ---
 
-🔧 Tools Used
+## Tools Used
+
 Terraform – To provision AWS infrastructure
 Ansible – To configure the EC2 instance with NGINX and HTTPS
 Packer – (Bonus) To build a pre-configured AMI with Ansible
@@ -61,7 +62,7 @@ GitHub Actions – CI pipeline for validating and applying Terraform code
 
 ---
 
-## 🔐 Security Highlights
+## Security Highlights
 
 * **Disk Encryption**: EBS volumes encrypted via AWS KMS
 * **SSL Enabled**: NGINX serves over HTTPS (self-signed)
@@ -70,7 +71,7 @@ GitHub Actions – CI pipeline for validating and applying Terraform code
 
 ---
 
-## ⚙️ GitHub Actions Pipeline
+##  GitHub Actions Pipeline
 
 * ✅ **Build AMI** using Packer with Ansible
 * ✅ **Extract AMI ID** and write to Terraform tfvars
@@ -79,7 +80,7 @@ GitHub Actions – CI pipeline for validating and applying Terraform code
 
 ---
 
-## 🚀 Getting Started (Local)
+##  Getting Started (Local)
 
 ### Prerequisites
 
@@ -105,7 +106,7 @@ terraform apply
 
 ---
 
-## ✅ Features
+##  Features
 
 * Full automation from AMI to deployment
 * Modular, reusable Terraform code
@@ -115,7 +116,7 @@ terraform apply
 
 ---
 
-## 🧹 TODO (Future Enhancements)
+##  TODO (Future Enhancements)
 
 * [ ] Use Let's Encrypt instead of self-signed SSL
 * [ ] Add tfsec or Checkov security scans
@@ -125,10 +126,10 @@ terraform apply
 
 ---
 
-## 📜 License
+##  License
 
 [MIT](./LICENSE)
 
 ---
 
-> Created with ❤️ by Devang Pandya — built for speed, security, and interviews.
+> Created with ❤️ by Devang Pandya — built for Demo. 
