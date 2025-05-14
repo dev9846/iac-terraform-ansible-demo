@@ -41,10 +41,14 @@ jobs:
         run: |
           AMI_OUTPUT=$(packer build -machine-readable nginx-python3.8-ami.json | tee /tmp/packer.log | grep 'artifact,0,id' | cut -d, -f6 | cut -d: -f2)
           echo "AMI_ID=$AMI_OUTPUT" >> $GITHUB_ENV
-          echo "ami_id = \"$AMI_ID\"" > ../env/dev/terraform.auto.tfvars
+          
 
       - name: confirm variable ami name
-        run: echo $GITHUB_ENV
+        run: |
+           echo $GITHUB_ENV
+           echo $AMI_ID
+           echo "ami_id = \"$AMI_ID\"" > env/dev/terraform.auto.tfvars
+           cat env/dev/terraform.auto.tfvars
 
       - name: confirm file
         run: cat env/dev/terraform.auto.tfvars
