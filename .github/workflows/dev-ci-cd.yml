@@ -46,11 +46,10 @@ jobs:
         run: echo $GITHUB_ENV
 
       - name: Debug packer output
-        run: |
-            packer build -machine-readable packer/nginx-python3.8-ami.json | tee packer-output.log
+        run: echo "ami_id = \"$AMI_ID\"" > env/dev/terraform.auto.tfvars
 
-      - name: Show log lines
-        run: grep 'artifact,0,id' packer-output.log || echo "No AMI line found"
+      - name: Confirm auto tfvars
+        run: cat env/dev/terraform.auto.tfvars
 
 
   deploy:
