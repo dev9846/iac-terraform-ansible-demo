@@ -42,3 +42,13 @@ variable "environment" {
   description = "Environment name (dev/staging/prod)"
   type        = string
 }
+
+variable "encryption" {
+  description = "EBS Encryption for security"
+  type        = bool
+}
+
+variable "ebs_size" {
+  description = "EBS Volume Size"
+  type        = number
+}

@@ -7,3 +7,5 @@ instance_type        = "t2.micro"
 key_name             = "iac-demo-assignment"
 project              = "iac-nginx"
 environment          = "dev"
+ebs_size             = 8
+encryption           = true

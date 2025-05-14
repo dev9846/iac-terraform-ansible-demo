@@ -32,3 +32,13 @@ variable "environment" {
   description = "Environment for tagging"
   type        = string
 }
+
+variable "encryption" {
+  description = "EBS Encryption for security"
+  type        = bool
+}
+
+variable "ebs_size" {
+  description = "EBS Volume Size"
+  type        = number
+}

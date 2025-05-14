@@ -30,6 +30,8 @@ module "ec2" {
   key_name          = var.key_name
   project           = var.project
   environment       = var.environment
+  encryption        = var.encryption
+  ebs_size          = var.ebs_size 
 }
 
 output "ec2_public_ip" {
