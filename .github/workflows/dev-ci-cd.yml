@@ -30,6 +30,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Install Packer Amazon Plugin
+        run: packer plugins install github.com/hashicorp/amazon
+
+      - name: Install Packer Ansible Plugin
+        run: packer plugins install github.com/hashicorp/ansible
+
       - name: Build AMI with Packer
         working-directory: packer
         run: |
