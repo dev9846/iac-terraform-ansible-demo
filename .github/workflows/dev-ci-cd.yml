@@ -45,11 +45,11 @@ jobs:
       - name: confirm variable ami name
         run: echo $GITHUB_ENV
 
-      - name: Debug packer output
-        run: echo "ami_id = \"$AMI_ID\"" > env/dev/terraform.auto.tfvars
-
-      - name: Confirm auto tfvars
-        run: cat env/dev/terraform.auto.tfvars
+      - name: Save AMI ID for Terraform
+        uses: actions/upload-artifact@v3
+        with:
+            name: tfvars
+            path: env/dev/terraform.auto.tfvars
 
 
   deploy:
@@ -74,9 +74,11 @@ jobs:
         with:
           terraform_version: latest
 
-      - name: Inject AMI ID into tfvars
-        run: |
-          echo 'ami_id = "${{ env.AMI_ID }}"' > env/dev/terraform.auto.tfvars
+      - name: Download AMI ID tfvars file
+        uses: actions/download-artifact@v3
+        with:
+            name: tfvars
+            path: env/dev
 
       - name: Confirm AMI ID was written
         run: cat env/dev/terraform.auto.tfvars    
