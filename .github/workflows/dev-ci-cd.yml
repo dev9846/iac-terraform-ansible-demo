@@ -47,7 +47,7 @@ jobs:
         run: echo $GITHUB_ENV
 
       - name: confirm file
-        run: cat dev/terraform.auto.tfvars
+        run: cat env/dev/terraform.auto.tfvars
 
       - name: Save AMI ID for Terraform
         uses: actions/upload-artifact@v4
