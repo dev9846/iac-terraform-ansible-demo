@@ -62,6 +62,9 @@ jobs:
         run: |
           echo 'ami_id = "${{ env.AMI_ID }}"' > env/dev/terraform.auto.tfvars
 
+      - name: Confirm AMI ID was written
+        run: cat env/dev/terraform.auto.tfvars    
+
       - name: Terraform Init
         working-directory: env/dev
         run: terraform init
