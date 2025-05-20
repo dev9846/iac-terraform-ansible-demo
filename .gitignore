@@ -2,5 +2,4 @@
 env/dev/.terraform/
 *.zip
 *.pem
-*.pkr.hcl
 packer/packer_cache/
