@@ -93,13 +93,19 @@ Outputs:
 
 ```bash
 # Build AMI
+
+# Install Packer plugins (first time only)
+packer plugins install github.com/hashicorp/amazon
+packer plugins install github.com/hashicorp/ansible
+
 cd packer
 packer build nginx-python3.8-ami.json
 
 # Update AMI ID in env/dev/terraform.tfvars
 
 # Deploy infrastructure
-cd ../../env/dev
+GO to env/dev Folder from root folder
+cd env/dev
 terraform init
 terraform apply
 ```
